@@ -52,9 +52,9 @@ tls: {}
   #   group: cert-manager.io
 
 pxc:
-  size: 3
+  size: 1
   image:
-    repository: percona/percona-xtradb-cluster
+    repository: docker.io/percona/percona-xtradb-cluster
     tag: 8.0.35-27.1
   # imagePullPolicy: Always
   autoRecovery: true
@@ -201,7 +201,7 @@ pxc:
 haproxy:
   enabled: true
   size: 3
-  image: ""
+  image: docker.io/percona/percona-xtradb-cluster-operator:1.14.0-haproxy
   # imagePullPolicy: Always
   imagePullSecrets: []
   # - name: private-registry-credentials
@@ -559,7 +559,7 @@ backup:
   enabled: true
   # allowParallel: true
   image:
-    repository: percona/percona-xtradb-cluster-operator
+    repository: docker.io/percona/percona-xtradb-cluster-operator
     tag: 1.14.0-pxc8.0-backup-pxb8.0.35
   # backoffLimit: 6
   # serviceAccountName: percona-xtradb-cluster-operator
@@ -568,22 +568,22 @@ backup:
   # - name: private-registry-credentials
   pitr:
     enabled: false
-    storageName: s3-us-west-binlogs
+    storageName: fs-pvc
     timeBetweenUploads: 60
     timeoutSeconds: 60
     resources:
       requests: {}
       limits: {}
   storages: {}
-    # fs-pvc:
-    #   type: filesystem
-    #   volume:
-    #     persistentVolumeClaim:
-    #       storageClassName: standard
-    #       accessModes: ["ReadWriteOnce"]
-    #       resources:
-    #         requests:
-    #           storage: 6Gi
+     fs-pvc:
+       type: filesystem
+       volume:
+         persistentVolumeClaim:
+           storageClassName: standard
+           accessModes: ["ReadWriteOnce"]
+           resources:
+             requests:
+               storage: 6Gi
     # s3-us-west:
     #   type: s3
     #   verifyTLS: true
