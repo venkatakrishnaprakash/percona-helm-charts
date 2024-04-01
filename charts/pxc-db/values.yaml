@@ -574,7 +574,7 @@ backup:
     resources:
       requests: {}
       limits: {}
-  storages: {}
+  storages: 
      fs-pvc:
        type: filesystem
        volume:
