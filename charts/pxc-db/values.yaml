@@ -684,7 +684,7 @@ secrets:
      operator: insecure-operator-password
      replication: insecure-replication-password
   ## If you are using `cert-manager` you can skip this next section.
-  tls: {}
+  #tls: {}
     # This should be the name of a secret that contains certificates.
     # it should have the following keys: `ca.crt`, `tls.crt`, `tls.key`
     # If not set the Helm chart will attempt to create certificates
