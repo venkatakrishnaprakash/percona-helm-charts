@@ -19,7 +19,7 @@ annotations: {}
 
 operatorImageRepository: percona/percona-xtradb-cluster-operator
 
-crVersion: 1.14.0
+crVersion: 1.14.1
 ignoreAnnotations: []
   # - iam.amazonaws.com/role
 ignoreLabels: []
@@ -200,7 +200,7 @@ pxc:
 
 haproxy:
   enabled: true
-  size: 3
+  size: 1
   image: docker.io/percona/percona-xtradb-cluster-operator:1.14.0-haproxy
   # imagePullPolicy: Always
   imagePullSecrets: []
@@ -519,7 +519,7 @@ proxysql:
 
 logcollector:
   enabled: true
-  image: ""
+  image: docker.io/erconalab/percona-xtradb-cluster-operator:main-logcollector
   # imagePullPolicy: Always
   imagePullSecrets: []
   # configuration: |
@@ -556,7 +556,7 @@ pmm:
     limits: {}
 
 backup:
-  enabled: true
+  enabled: false
   # allowParallel: true
   image:
     repository: docker.io/percona/percona-xtradb-cluster-operator
